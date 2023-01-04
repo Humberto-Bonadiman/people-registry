@@ -15,6 +15,14 @@ public class CreatePerson {
         return person;
     }
 
+    public static @NotNull Person createSecondTestPerson() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        String date = "20/05/1998";
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        Person person = new Person("Second Name Test", localDate);
+        return person;
+    }
+
     public static @NotNull PersonTestDto createPersonTestDto() {
         PersonTestDto personTestDto = new PersonTestDto(
                 "Name Test",
