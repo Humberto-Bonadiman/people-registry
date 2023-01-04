@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
 @RequiredArgsConstructor
-@Accessors(fluent = true)
 @Getter
 public class AddressDto {
 
@@ -18,5 +17,7 @@ public class AddressDto {
 
     private final @NotNull String city;
 
-    private final @NotNull boolean mainAddress;
+    private final @NotNull Long personId;
+
+    private final boolean mainAddress;
 }

@@ -1,5 +1,6 @@
 package com.spring.register.people.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,7 +32,8 @@ public class Address {
     @Column(name = "main_address")
     private boolean mainAddress;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
     private Person person;
 

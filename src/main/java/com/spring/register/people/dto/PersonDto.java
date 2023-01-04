@@ -8,7 +8,6 @@ import lombok.experimental.Accessors;
 import java.time.LocalDate;
 
 @RequiredArgsConstructor
-@Accessors(fluent = true)
 @Getter
 public class PersonDto {
     private final @NotNull String name;

@@ -10,5 +10,5 @@ public interface AddressInterface {
 
     List<Address> listPersonAddresses(Long id);
 
-    Address findByMainAddress();
+    Address findByMainAddress(Long personId);
 }

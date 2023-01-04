@@ -5,10 +5,12 @@ import com.spring.register.people.exception.messages.AddressNotFoundException;
 import com.spring.register.people.model.Address;
 import com.spring.register.people.model.Person;
 import com.spring.register.people.repository.AddressRepository;
-import java.util.List;
-import java.util.Optional;
-
 import com.spring.register.people.repository.PersonRepository;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,31 +22,46 @@ public class AddressService implements AddressInterface {
     private AddressRepository addressRepository;
 
     @Autowired
+    private PersonRepository personRepository;
+
+    @Autowired
     private PersonService personService;
 
     @Override
     public Address createAddress(@NotNull AddressDto addressDto) {
         Address address = new Address(
-                addressDto.publicPlace(),
-                addressDto.cep(),
-                addressDto.number(),
-                addressDto.city(),
-                addressDto.mainAddress()
+                addressDto.getPublicPlace(),
+                addressDto.getCep(),
+                addressDto.getNumber(),
+                addressDto.getCity(),
+                addressDto.isMainAddress()
         );
-        addressRepository.save(address);
-        return null;
+        Person person = personService.findById(addressDto.getPersonId());
+        person.addAddress(address);
+        Person savedPerson = personRepository.save(person);
+        return savedPerson.getAddress().get(savedPerson.getAddress().size() - 1);
     }
 
     @Override
     public List<Address> listPersonAddresses(Long id) {
         Person person = personService.findById(id);
-        List<Address> adresses = person.getAddress();
-        return adresses;
+        return person.getAddress();
     }
 
     @Override
-    public Address findByMainAddress() {
-        return findAddressByMainAddress();
+    public Address findByMainAddress(Long personId) {
+        Person person = personService.findById(personId);
+        List<Address> addresses = person.getAddress();
+        if (addresses.size() == 0) {
+            return null;
+        }
+        List<Address> list = addresses.stream()
+                .filter(mainAddress -> Objects.equals(
+                        mainAddress.isMainAddress(),
+                        true
+                ))
+                .collect(Collectors.toList());
+        return list.get(0);
     }
 
     private @NotNull Address findAddressByMainAddress() {

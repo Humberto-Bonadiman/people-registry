@@ -20,8 +20,8 @@ public class PersonService implements PersonInterface {
     @Override
     public Person createPerson(@NotNull PersonDto personDto) {
         Person person = new Person(
-                personDto.name(),
-                personDto.birthDate()
+                personDto.getName(),
+                personDto.getBirthDate()
         );
         personRepository.save(person);
         return person;
@@ -40,14 +40,15 @@ public class PersonService implements PersonInterface {
     @Override
     public Person editPersonById(Long id, @NotNull PersonDto personDto) {
         Person person = findById(id);
-        person.setName(personDto.name());
-        person.setBirthDate(personDto.birthDate());
+        person.setName(personDto.getName());
+        person.setBirthDate(personDto.getBirthDate());
         personRepository.save(person);
         return person;
     }
 
     @Override
     public void deletePersonById(Long id) {
+        findById(id);
         personRepository.deleteById(id);
     }
 
