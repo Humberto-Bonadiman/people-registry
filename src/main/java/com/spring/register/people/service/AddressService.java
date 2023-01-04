@@ -64,11 +64,4 @@ public class AddressService implements AddressInterface {
         return list.get(0);
     }
 
-    private @NotNull Address findAddressByMainAddress() {
-        Optional<Address> validMainAddress = addressRepository.findByMainAddress(true);
-        if (validMainAddress.isEmpty()) {
-            throw new AddressNotFoundException();
-        }
-        return validMainAddress.get();
-    }
 }

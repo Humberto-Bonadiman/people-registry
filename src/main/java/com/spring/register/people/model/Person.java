@@ -43,6 +43,10 @@ public class Person {
         this.address = new ArrayList<Address>();
     }
 
+    public Person(String name) {
+        this.name = name;
+    }
+
     public void addAddress(@NotNull Address address) {
         address.setPerson(this);
         this.address.add(address);

@@ -1,11 +1,10 @@
 package com.spring.register.people.dto;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.Accessors;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 public class AddressDto {
 
