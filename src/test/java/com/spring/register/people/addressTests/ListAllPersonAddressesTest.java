@@ -1,6 +1,5 @@
 package com.spring.register.people.addressTests;
 
-import com.spring.register.people.dto.AddressDto;
 import com.spring.register.people.model.Address;
 import com.spring.register.people.model.Person;
 import com.spring.register.people.repository.PersonRepository;
@@ -11,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.time.format.DateTimeFormatter;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
