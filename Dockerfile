@@ -1,5 +1,4 @@
 FROM maven:3.8.6-openjdk-11
-RUN mvn clean package
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 RUN bash -c 'touch /app.jar'
