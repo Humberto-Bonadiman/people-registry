@@ -33,6 +33,8 @@ jobs:
         - name: Docker Compose Build
           working-directory: .
           run: |
+            touch .env
+            echo PORT=${{ secrets.ENV_FILE }}
             mvn clean package
             docker-compose build
 
