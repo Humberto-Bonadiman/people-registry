@@ -2,6 +2,7 @@ package com.spring.register.people.service;
 
 import com.spring.register.people.dto.AddressDto;
 import com.spring.register.people.exception.messages.AddressNotFoundException;
+import com.spring.register.people.exception.messages.NumberNotZeroException;
 import com.spring.register.people.model.Address;
 import com.spring.register.people.model.Person;
 import com.spring.register.people.repository.AddressRepository;
@@ -29,6 +30,7 @@ public class AddressService implements AddressInterface {
 
     @Override
     public Address createAddress(@NotNull AddressDto addressDto) {
+        testGetNumber(addressDto.getNumber());
         Address address = new Address(
                 addressDto.getPublicPlace(),
                 addressDto.getCep(),
@@ -64,4 +66,9 @@ public class AddressService implements AddressInterface {
         return list.get(0);
     }
 
+    private void testGetNumber(int number) {
+        if (number == 0) {
+            throw new NumberNotZeroException();
+        }
+    }
 }

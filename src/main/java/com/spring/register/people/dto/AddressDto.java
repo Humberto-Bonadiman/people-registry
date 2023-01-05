@@ -3,20 +3,24 @@ package com.spring.register.people.dto;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Setter
 public class AddressDto {
 
-    private final @NotNull String publicPlace;
+    private @NotNull String publicPlace;
 
-    private final @NotNull Long cep;
+    private @NotNull String cep;
 
-    private final @NotNull int number;
+    private @NotNull int number;
 
-    private final @NotNull String city;
+    private @NotNull String city;
 
-    private final @NotNull Long personId;
+    private @NotNull Long personId;
 
-    private final boolean mainAddress;
+    private boolean mainAddress;
 }

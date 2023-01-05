@@ -21,7 +21,7 @@ public class Address {
     private String publicPlace;
 
     @Column(name = "cep", nullable = false)
-    private Long cep;
+    private String cep;
 
     @Column(name = "number", nullable = false)
     private int number;
@@ -39,7 +39,7 @@ public class Address {
 
     public Address(
             String publicPlace,
-            Long cep,
+            String cep,
             int number,
             String city,
             boolean mainAddress) {
