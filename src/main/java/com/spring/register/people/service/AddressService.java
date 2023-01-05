@@ -1,14 +1,17 @@
 package com.spring.register.people.service;
 
 import com.spring.register.people.dto.AddressDto;
+import com.spring.register.people.exception.messages.AddressNotFoundException;
 import com.spring.register.people.exception.messages.MainAddressNotExistException;
 import com.spring.register.people.exception.messages.NumberLessThanZeroException;
+import com.spring.register.people.exception.messages.PersonNotFoundException;
 import com.spring.register.people.model.Address;
 import com.spring.register.people.model.Person;
 import com.spring.register.people.repository.AddressRepository;
 import com.spring.register.people.repository.PersonRepository;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +66,27 @@ public class AddressService implements AddressInterface {
                 .findFirst()
                 .orElseThrow(MainAddressNotExistException::new);
         return mainAddress;
+    }
+
+    @Override
+    public Address alterMainAddressById(Long id) {
+        Address address = findById(id);
+        if (address.isMainAddress()) {
+            address.setMainAddress(false);
+        }
+        if (!address.isMainAddress()) {
+            address.setMainAddress(true);
+        }
+        addressRepository.save(address);
+        return address;
+    }
+
+    private @NotNull Address findById(Long id) {
+        Optional<Address> validAddress = addressRepository.findById(id);
+        if (validAddress.isEmpty()) {
+            throw new AddressNotFoundException();
+        }
+        return validAddress.get();
     }
 
     private void testGetNumber(int number) {

@@ -47,4 +47,14 @@ public interface AddressInterfaceController {
                     content = @Content)})
     @Operation(summary = "Find the main address")
     ResponseEntity<Address> findByMainAddress(@RequestParam Long personId);
+
+    @PatchMapping("/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Address.class)) }),
+            @ApiResponse(responseCode = "404", description = "Address not found",
+                    content = @Content)})
+    @Operation(summary = "Alter Main Address By Id")
+    ResponseEntity<Address> alterMainAddressById(@PathVariable Long id);
 }

@@ -35,4 +35,9 @@ public class AddressController implements AddressInterfaceController {
     public ResponseEntity<Address> findByMainAddress(Long personId) {
         return ResponseEntity.status(HttpStatus.OK).body(addressService.findByMainAddress(personId));
     }
+
+    @Override
+    public ResponseEntity<Address> alterMainAddressById(Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(addressService.alterMainAddressById(id));
+    }
 }

@@ -12,4 +12,6 @@ public interface AddressInterface {
     List<Address> listPersonAddresses(Long id);
 
     Address findByMainAddress(Long personId) throws MainAddressNotExistException;
+
+    Address alterMainAddressById(Long id);
 }
