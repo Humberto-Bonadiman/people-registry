@@ -23,6 +23,17 @@ public class CreateAddress {
         return address;
     }
 
+    public static @NotNull Address createSecondTestAddress() {
+        Address address = new Address(
+                "Rua",
+                "01310930",
+                2000,
+                "São Paulo",
+                false
+        );
+        return address;
+    }
+
     public static @NotNull AddressDto createTestAddressDto(Long personId) {
         AddressDto addressDto = new AddressDto(
                 "Rua",

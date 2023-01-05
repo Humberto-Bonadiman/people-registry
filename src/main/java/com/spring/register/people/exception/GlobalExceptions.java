@@ -3,7 +3,7 @@ package com.spring.register.people.exception;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
 import com.spring.register.people.exception.messages.AddressNotFoundException;
-import com.spring.register.people.exception.messages.NumberNotZeroException;
+import com.spring.register.people.exception.messages.NumberLessThanZeroException;
 import com.spring.register.people.exception.messages.PersonNotFoundException;
 import org.hibernate.PropertyValueException;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ public class GlobalExceptions {
             InvalidFormatException.class,
             PropertyValueException.class,
             ValueInstantiationException.class,
-            NumberNotZeroException.class
+            NumberLessThanZeroException.class
     })
     public ResponseEntity<Object> handlerBadRequest(Exception exception) {
         return new ResponseEntity<>(new DataError(exception.getMessage()), HttpStatus.BAD_REQUEST);

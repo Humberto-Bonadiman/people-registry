@@ -1,8 +1,7 @@
 package com.spring.register.people.service;
 
 import com.spring.register.people.dto.AddressDto;
-import com.spring.register.people.exception.messages.AddressNotFoundException;
-import com.spring.register.people.exception.messages.NumberNotZeroException;
+import com.spring.register.people.exception.messages.NumberLessThanZeroException;
 import com.spring.register.people.model.Address;
 import com.spring.register.people.model.Person;
 import com.spring.register.people.repository.AddressRepository;
@@ -67,8 +66,8 @@ public class AddressService implements AddressInterface {
     }
 
     private void testGetNumber(int number) {
-        if (number == 0) {
-            throw new NumberNotZeroException();
+        if (number < 1) {
+            throw new NumberLessThanZeroException();
         }
     }
 }
