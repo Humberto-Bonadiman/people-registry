@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.spring.register</groupId>
-	<artifactId>people</artifactId>
+	<artifactId>people-registry</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>people</name>
+	<name>people-registry</name>
 	<description>Project for registration of people</description>
 	<properties>
 		<java.version>11</java.version>
