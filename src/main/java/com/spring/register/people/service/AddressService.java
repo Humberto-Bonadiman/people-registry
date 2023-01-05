@@ -1,6 +1,7 @@
 package com.spring.register.people.service;
 
 import com.spring.register.people.dto.AddressDto;
+import com.spring.register.people.exception.messages.MainAddressNotExistException;
 import com.spring.register.people.exception.messages.NumberLessThanZeroException;
 import com.spring.register.people.model.Address;
 import com.spring.register.people.model.Person;
@@ -8,8 +9,6 @@ import com.spring.register.people.repository.AddressRepository;
 import com.spring.register.people.repository.PersonRepository;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,19 +49,20 @@ public class AddressService implements AddressInterface {
     }
 
     @Override
-    public Address findByMainAddress(Long personId) {
+    public Address findByMainAddress(Long personId) throws MainAddressNotExistException {
         Person person = personService.findById(personId);
         List<Address> addresses = person.getAddress();
         if (addresses.size() == 0) {
-            return null;
+            throw new MainAddressNotExistException();
         }
-        List<Address> list = addresses.stream()
-                .filter(mainAddress -> Objects.equals(
-                        mainAddress.isMainAddress(),
+        Address mainAddress = addresses.stream()
+                .filter(address -> Objects.equals(
+                        address.isMainAddress(),
                         true
                 ))
-                .collect(Collectors.toList());
-        return list.get(0);
+                .findFirst()
+                .orElseThrow(MainAddressNotExistException::new);
+        return mainAddress;
     }
 
     private void testGetNumber(int number) {

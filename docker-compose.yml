@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  people-registry:
+    image: humbertobonadiman/people-registry
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: people-registry
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url" : "jdbc:h2:mem:people",
+        "spring.datasource.username" : "sa",
+        "spring.datasource.password" : "password",
+        "spring.h2.console.enabled" : "true",
+        "spring.h2.console.path" : "/h2-console"
+      }'
