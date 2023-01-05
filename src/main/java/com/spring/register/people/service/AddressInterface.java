@@ -13,5 +13,5 @@ public interface AddressInterface {
 
     Address findByMainAddress(Long personId) throws MainAddressNotExistException;
 
-    Address alterMainAddressById(Long id);
+    void alterMainAddressById(Long id);
 }

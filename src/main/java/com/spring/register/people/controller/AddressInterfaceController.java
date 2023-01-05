@@ -50,11 +50,11 @@ public interface AddressInterfaceController {
 
     @PatchMapping("/{id}")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
+            @ApiResponse(responseCode = "204",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Address.class)) }),
             @ApiResponse(responseCode = "404", description = "Address not found",
                     content = @Content)})
     @Operation(summary = "Alter Main Address By Id")
-    ResponseEntity<Address> alterMainAddressById(@PathVariable Long id);
+    ResponseEntity<Object> alterMainAddressById(@PathVariable Long id);
 }

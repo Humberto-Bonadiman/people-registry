@@ -37,7 +37,8 @@ public class AddressController implements AddressInterfaceController {
     }
 
     @Override
-    public ResponseEntity<Address> alterMainAddressById(Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(addressService.alterMainAddressById(id));
+    public ResponseEntity<Object> alterMainAddressById(Long id) {
+        addressService.alterMainAddressById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

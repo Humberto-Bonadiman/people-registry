@@ -52,10 +52,8 @@ public class AlterMainAddressByIdTest {
         personRepository.save(person);
         addressRepository.save(address);
         mockMvc.perform(patch("/address/" + address.getId())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(address)))
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
     }
 
     @Test

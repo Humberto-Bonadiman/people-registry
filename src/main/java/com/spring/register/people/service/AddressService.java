@@ -69,16 +69,16 @@ public class AddressService implements AddressInterface {
     }
 
     @Override
-    public Address alterMainAddressById(Long id) {
+    public void alterMainAddressById(Long id) {
         Address address = findById(id);
-        if (address.isMainAddress()) {
+        if (address.isMainAddress() == true) {
             address.setMainAddress(false);
+            addressRepository.save(address);
         }
-        if (!address.isMainAddress()) {
+        if (address.isMainAddress() == false) {
             address.setMainAddress(true);
+            addressRepository.save(address);
         }
-        addressRepository.save(address);
-        return address;
     }
 
     private @NotNull Address findById(Long id) {
