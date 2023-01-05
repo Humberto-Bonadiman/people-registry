@@ -11,6 +11,12 @@ jobs:
 
       steps:
         - uses: actions/checkout@v3
+
+        - name: 'Create .env file'
+          run: |
+            touch .env
+            echo "${{ secrets.ENV_FILE }}" > .env
+        - uses: actions/checkout@v3
       
         - name: Docker Login
           uses: docker/login-action@v2.0.0

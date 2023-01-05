@@ -7,8 +7,9 @@ services:
       dockerfile: Dockerfile
     container_name: people-registry
     restart: always
+    env_file: ./.env
     ports:
-      - 8080:8080
+      - "${PORT}:${PORT}"
     environment:
       SPRING_APPLICATION_JSON: '{
         "spring.datasource.url" : "jdbc:h2:mem:people",
